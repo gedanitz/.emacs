@@ -25,6 +25,10 @@
 
                                    ;;Projectile
                                    projectile
+
+                                   ;; Sexp
+                                   paredit
+                                   paxedit
                                    ))
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Basics
@@ -122,3 +126,17 @@
 
 (util/global-set-keys
   "C-x C-x" 'projectile-find-file)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Paredit
+
+(require 'setup--paredit)
+
+(util/define-keys paredit-mode-map
+  "M-i"   'paredit-reindent-defun
+  "C-M-c" 'paredit-close-round
+  "C-M-i" 'paredit-forward-down
+  "C-c b" 'backward-kill-sexp
+  "C-c B" 'paredit-splice-sexp-killing-backward
+  "M-{"   'paredit-wrap-curly
+  "M-["   'paredit-wrap-square)
