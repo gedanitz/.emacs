@@ -18,7 +18,8 @@
                                    idomenu
                                    ido-vertical-mode
                                    ido-ubiquitous
-                                   crm-custom))
+                                   crm-custom
+                                   smex))
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -88,3 +89,11 @@
               "SPC" 'ido-restrict-to-matches
               "C-j" 'ido-next-match
               "C-k" 'ido-prev-match)))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Smex
+
+(require 'setup--smex)
+
+(util/global-set-keys
+  "M-x" 'setup--smex/run-smex)
