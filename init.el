@@ -12,7 +12,13 @@
 
 (util--package/install-packages! '(dash
                                    elscreen
-                                   magit))
+                                   magit
+
+                                   ;; ido
+                                   idomenu
+                                   ido-vertical-mode
+                                   ido-ubiquitous
+                                   crm-custom))
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -63,3 +69,22 @@
   "M-RET L" 'magit-log-all
   "M-RET l" 'magit-log-current
   "M-RET s" 'magit-status)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Ido
+
+(require 'setup--ido)
+
+(util/global-set-keys
+  "M-a" 'idomenu
+  "M-s" 'ido-switch-buffer)
+
+(add-hook 'ido-setup-hook
+          (lambda ()
+            (util/define-keys ido-file-completion-map
+              "C-w" 'ido-delete-backward-updir)
+
+            (util/define-keys ido-common-completion-map
+              "SPC" 'ido-restrict-to-matches
+              "C-j" 'ido-next-match
+              "C-k" 'ido-prev-match)))
