@@ -11,7 +11,8 @@
 (require 'util--package)
 
 (util--package/install-packages! '(dash
-                                   elscreen))
+                                   elscreen
+                                   magit))
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
