@@ -19,9 +19,9 @@
                                    ido-vertical-mode
                                    ido-ubiquitous
                                    crm-custom
-                                   smex))
-
-
+                                   smex
+                                   swiper
+                                   counsel))
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Basics
 
@@ -97,3 +97,16 @@
 
 (util/global-set-keys
   "M-x" 'setup--smex/run-smex)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Swiper / Counsel
+;; Keybindigns M-n M-p ivy-history
+;; C-M-n ivy-next-line-and-call
+
+(require 'swiper)
+
+(setq ivy-height 13)
+
+(util/global-set-keys
+  "M-h" 'swiper
+  "M-H" 'counsel-git-grep)
