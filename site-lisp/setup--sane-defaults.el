@@ -61,7 +61,7 @@
 ;; Strip trailing whitespace upon save
 
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
-
+(cua-mode t)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
