@@ -55,3 +55,11 @@
   "M-N" 'elscreen-next
   "M-X" 'elscreen-kill
   "M-C" 'util--elscreen/create)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Magit
+
+(util/global-set-keys
+  "M-RET L" 'magit-log-all
+  "M-RET l" 'magit-log-current
+  "M-RET s" 'magit-status)
