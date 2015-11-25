@@ -21,7 +21,11 @@
                                    crm-custom
                                    smex
                                    swiper
-                                   counsel))
+                                   counsel
+
+                                   ;;Projectile
+                                   projectile
+                                   ))
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Basics
 
@@ -110,3 +114,11 @@
 (util/global-set-keys
   "M-h" 'swiper
   "M-H" 'counsel-git-grep)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Projectile
+
+(require 'setup--projectile)
+
+(util/global-set-keys
+  "C-x C-x" 'projectile-find-file)
