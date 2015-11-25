@@ -29,6 +29,9 @@
                                    ;; Sexp
                                    paredit
                                    paxedit
+
+                                   ;; Editing
+                                   expand-region
                                    ))
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Basics
@@ -140,3 +143,10 @@
   "C-c B" 'paredit-splice-sexp-killing-backward
   "M-{"   'paredit-wrap-curly
   "M-["   'paredit-wrap-square)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Expand region
+
+;; (util/global-set-keys
+;;   "M-." 'er/expand-region
+;;   "M-," 'er/contract-region)
