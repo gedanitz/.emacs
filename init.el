@@ -32,7 +32,10 @@
 
                                    ;; Editing
                                    expand-region
+                                   multiple-cursors
                                    ))
+
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Basics
 
@@ -52,14 +55,21 @@
   "M-j"     'util/join-line
   "M-o"     'util/window-toggle
   "M-;"     'util/comment
-  "M-l"     'util/switch-to-previous-buffer)
+  "M-l"     'util/switch-to-previous-buffer
+  "M-."     nil)
 
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Misc
+
+(util/global-unset-keys
+  "M-SPC")
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Quickly open files
 
 (util/global-set-keys
-  "M-RET e" (util/open-file "~/.emacs.d/init.el"))
+  "M-SPC e" (util/open-file "~/.emacs.d/init.el"))
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -78,9 +88,9 @@
 ;; Magit
 
 (util/global-set-keys
-  "M-RET L" 'magit-log-all
-  "M-RET l" 'magit-log-current
-  "M-RET s" 'magit-status)
+  "M-SPC L" 'magit-log-all
+  "M-SPC l" 'magit-log-current
+  "M-SPC s" 'magit-status)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Ido
@@ -147,6 +157,17 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Expand region
 
-;; (util/global-set-keys
-;;   "M-." 'er/expand-region
-;;   "M-," 'er/contract-region)
+ (util/global-set-keys
+   "M-." 'er/expand-region
+   "M-," 'er/contract-region)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Multiple Cursors
+
+(util/global-set-keys
+  "M-1" 'mc/mark-previous-like-this
+  "M-2" 'mc/mark-next-like-this
+  "M-3" 'mc/mark-all-like-this
+  "M-4" 'mc/edit-lines
+  "M-\"" 'mc/skip-to-next-like-this
+  "M-!" 'mc/skip-to-previous-like-this)

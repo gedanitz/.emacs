@@ -1,6 +1,8 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Disable keybindings
 
+(require 'paredit)
+
 (util/define-keys paredit-mode-map
   "C-M-n"       nil
   "C-M-p"       nil
