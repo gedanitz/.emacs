@@ -33,6 +33,19 @@
                                    ;; Editing
                                    expand-region
                                    multiple-cursors
+
+                                   ;; Lang: Clojure
+                                   clojure-mode
+                                   cider
+                                   clj-refactor
+                                   cider-eval-sexp-fu
+                                   nrepl-eval-sexp-fu
+                                   align-cljlet
+                                   popup
+
+                                   ;;Misc
+                                   company
+                                   company-quickhelp
                                    ))
 
 
@@ -171,3 +184,90 @@
   "M-4" 'mc/edit-lines
   "M-\"" 'mc/skip-to-next-like-this
   "M-!" 'mc/skip-to-previous-like-this)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Clojure
+
+(require 'setup--clojure)
+(require 'util--clojure)
+
+;; Cljr Prefix
+(cljr-add-keybindings-with-prefix "C-c r")
+
+;; Global
+(util/global-set-keys
+  "C-c >" 'cider-connect
+  "C-c <" 'cider-quit)
+
+;; Cider
+(util/define-keys cider-mode-map
+  "C-c C-c" 'util--clojure/eval-region-or-defun
+  "C-c e"   'util--clojure/eval-form-in-repl
+  "M-e"     'util--clojure/eval-form
+  "C-M-x"   'util--clojure/eval-form
+  "C-c TAB" 'util--clojure/insert-region-or-last-sexp-into-repl
+  "C-t"     'cider-switch-to-repl-buffer)
+
+;;  Cider Repl
+(util/define-keys cider-repl-mode-map
+  "C-t"   'cider-switch-to-last-clojure-buffer
+  ;; C-j?
+  "C-RET" 'cider-repl-newline-and-indent)
+
+;; Cider / Cider Repl
+(util/define-keys (list cider-mode-map cider-repl-mode-map)
+  "C-c a"   'cider-interrupt
+  "C-c g"   'cider-grimoire
+  "C-c C-j" 'cider-find-var
+  "C-c C-b" 'cider-jump-back
+  "C-c d"   'cider-doc
+  "C-c s"   'util--clojure/visit-error-buffer
+  "C-M-e"   'util--clojure/end-of-defun
+  "C-c C-r" 'util--clojure/eval-and-replace-region-or-last-sexp
+  "C-c h"   'util--clojure/popup-doc
+  "C-c i"   (util/all-buffers-saved (util--clojure/cider-cmd "(user/system-restart!)"))
+  "C-c k"   (util/all-buffers-saved (util--clojure/cider-cmd "(user/system-stop!)"))
+  "C-c I"   (util--clojure/cider-cmd "(do (require 'clojure.tools.namespace.repl) (clojure.tools.namespace.repl/refresh-all))"))
+
+;; Cider Test
+(util/define-keys cider-test-report-mode-map
+  "M-j" 'cider-test-jump)
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Paxedit
+
+(require 'setup--paxedit)
+
+(defvar paxedit-keys '(("k" . 'paxedit-transpose-backward)
+                       ("j" . 'paxedit-transpose-forward)
+                       ("d" . 'paxedit-kill)))
+
+(util/define-keys emacs-lisp-mode-map
+  "C-c j" paxedit-keys)
+
+(util/define-keys clojure-mode-map
+  "C-c j" paxedit-keys)
+
+(util/define-keys (list emacs-lisp-mode-map
+                        cider-mode-map)
+  "C-M-j" 'paxedit-transpose-forward
+  "C-M-k" 'paxedit-transpose-backward)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Company
+
+(require 'setup--company)
+
+(util/global-set-keys
+  "\t" 'company-complete-common)
+
+;; C-n/C-p -> up/down
+(util/define-keys company-active-map
+  "\C-n"  'company-select-next
+  "\C-p"  'company-select-previous
+  "\C-d"  'company-show-doc-buffer
+  "\C-v"  'company-show-location
+  "<tab>" 'company-complete
+  "\C-g"  'company-abort
+  "M-h"   'company-quickhelp-manual-begin)
