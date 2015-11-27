@@ -46,6 +46,10 @@
                                    ;;Misc
                                    company
                                    company-quickhelp
+
+                                   ;; Appearance
+                                   rainbow-delimiters
+                                   noctilux-theme
                                    ))
 
 
@@ -57,6 +61,8 @@
 (require 'setup--sane-defaults)
 (require 'setup--appearance)
 (require 'setup--scrolling)
+(require 'setup--rainbow-delimiters)
+(require 'setup--noctilux-theme)
 
 (util/global-set-keys
   "C-w"     'backward-kill-word
