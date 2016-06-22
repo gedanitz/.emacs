@@ -8,7 +8,7 @@ For a more complete setup, see [dotemacs](https://github.com/hemmvm/dotemacs).
 ## Install
 Clone the repo and create a symlink
 ```bash
-git clone https://github.com/hemmvm/dotemacs-starter.git
+git clone https://github.com/gedanitz/.emacs.git
 ln -s dotemacs-starter ~/.emacs.d
 ```
 
