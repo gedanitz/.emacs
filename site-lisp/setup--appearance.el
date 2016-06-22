@@ -25,6 +25,8 @@
             (font-lock-add-keywords nil '(("\\<\\(HACK\\|NOTE\\|FIXME\\|TODO\\|BUG\\)"
                                            1 font-lock-warning-face t)))))
 
+;; set global font
+(set-face-attribute 'default nil :family "Consolas")
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 

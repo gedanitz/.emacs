@@ -67,7 +67,7 @@
 (util/global-set-keys
   "C-w"     'backward-kill-word
   "C-h"     'backward-delete-char-untabify
-  "C-v"     'set-mark-command
+  "M--"     'set-mark-command
   "M-\\"    'help
   "M-0"     'back-to-indentation
   "C-x C-s" 'util/save-all-buffers!
@@ -75,8 +75,8 @@
   "M-o"     'util/window-toggle
   "M-;"     'util/comment
   "M-l"     'util/switch-to-previous-buffer
-  "M-."     nil)
-
+  "M-."     nil
+  "C-x f"   'recentf-open-files)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Misc
@@ -88,8 +88,9 @@
 ;; Quickly open files
 
 (util/global-set-keys
-  "M-SPC e" (util/open-file "~/.emacs.d/init.el"))
-
+ "M-SPC e" (util/open-file "~/.emacs.d/init.el")
+ "M-SPC t" (util/open-file "h:/work/TODO.org")
+ "M-SPC i" (util/open-file "k:/Doctronic/Ausbildung/Themenrunde/_Themenliste.txt"))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Elscreen
@@ -277,3 +278,11 @@
   "<tab>" 'company-complete
   "\C-g"  'company-abort
   "M-h"   'company-quickhelp-manual-begin)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; RecentF
+
+(require 'setup--recentf)
+
+(util/global-set-keys
+  "C-x f" 'recentf-open-files)
