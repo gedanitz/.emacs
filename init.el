@@ -208,7 +208,10 @@
 
 ;; Cider
 (util/define-keys cider-mode-map
-  "C-c C-c" 'util--clojure/eval-region-or-defun
+  "C-c C-c" (lambda ()
+              (interactive)
+              (util/save-all-buffers!)
+              (cider-interactive-eval "(do (require 'clojure.tools.namespace.repl) (clojure.tools.namespace.repl/refresh-all))"))
   "C-c e"   'util--clojure/eval-form-in-repl
   "M-e"     'util--clojure/eval-form
   "C-M-x"   'util--clojure/eval-form
