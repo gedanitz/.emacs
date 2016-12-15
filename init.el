@@ -1,6 +1,3 @@
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; Site lisp
-
 (add-to-list 'load-path "~/.emacs.d/site-lisp")
 
 
@@ -13,6 +10,7 @@
 (util--package/install-packages! '(dash
                                    elscreen
                                    magit
+                                   ;; ssh-agency
 
                                    ;; ido
                                    idomenu
@@ -42,6 +40,9 @@
                                    nrepl-eval-sexp-fu
                                    align-cljlet
                                    popup
+
+                                   ;; Lang: VB(S)
+
 
                                    ;;Misc
                                    company
@@ -79,10 +80,18 @@
   "C-x f"   'recentf-open-files)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; UTF-8
+(set-terminal-coding-system 'utf-8)
+(set-keyboard-coding-system 'utf-8)
+(prefer-coding-system 'utf-8)
+(load-library "iso-transl")
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Misc
 
 (util/global-unset-keys
-  "M-SPC")
+ "M-SPC"
+ "C-c M-j")
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Quickly open files
@@ -107,10 +116,26 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Magit
 
+;; (require 'ssh-agency)
+
+(require 'magit)
+
 (util/global-set-keys
   "M-SPC L" 'magit-log-all
   "M-SPC l" 'magit-log-current
   "M-SPC s" 'magit-status)
+
+(magit-define-popup-action
+  'magit-push-popup
+  ?P
+  "Push implicitly"
+  'magit-push-implicitly)
+
+;; (setenv "SSH_ASKPASS" "git-gui--askpass")
+
+;; (setenv "SSH_GIT" "C:/PuTTy/plink.exe")
+
+;; (shell-command-to-string (concat (getenv "SSH_GIT") " -V"))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Ido
